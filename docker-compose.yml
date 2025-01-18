@@ -1,0 +1,21 @@
+version: '3'
+services:
+  imgproxy:
+    image: darthsim/imgproxy:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - IMGPROXY_KEY=${IMGPROXY_KEY}
+      - IMGPROXY_SALT=${IMGPROXY_SALT}
+      - IMGPROXY_MAX_SRC_RESOLUTION=50
+      - IMGPROXY_TTL=3600
+      - IMGPROXY_QUALITY=80
+      - IMGPROXY_FORMAT=webp
+      - IMGPROXY_ENABLE_WEBP_DETECTION=true
+      - IMGPROXY_USE_S3=true
+      - IMGPROXY_S3_ENDPOINT=${SUPABASE_STORAGE_URL}
+      - IMGPROXY_ALLOWED_SOURCES=*
+      - IMGPROXY_DEVELOPMENT_ERRORS_MODE=true
+      - IMGPROXY_ENABLE_PROCESSING_HEADER=true
+      - IMGPROXY_ENABLE_CLIENT_HINTS=true
+      - IMGPROXY_PRESERVE_EXIF=true
